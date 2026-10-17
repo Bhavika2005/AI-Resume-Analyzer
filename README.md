@@ -279,7 +279,11 @@ The application contains the following main pages:
 
 
 
-#### 4. 
+#### 4. Resume Comparison: Compare recent resume versions.
+  ![ResumeComparison1](ResumeComparison1.png)
+
+  ![Comparison2](comparison2.png)
+
 
 
 
