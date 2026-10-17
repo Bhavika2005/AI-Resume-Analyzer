@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Comparison</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #151f32;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .score {
+            font-size: 35px;
+            color: #4f8cff;
+            margin: 15px 0;
+        }
+
+        .item {
+            background: #202c43;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+        }
+
+        .improvement {
+            margin-top: 25px;
+            background: #151f32;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .positive {
+            color: #70d890;
+            font-size: 20px;
+        }
+
+        .negative {
+            color: #ff7777;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 7px;
+            background: #4f8cff;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 700px) {
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <button onclick="window.location.href='history.html'">
+        ← Back to History
+    </button>
+
+    <h1>📊 Resume Comparison</h1>
+
+    <div id="comparisonContainer"></div>
+
+</div>
+
+
+<script src="js/compare.js"></script>
+
+</body>
+
+</html>

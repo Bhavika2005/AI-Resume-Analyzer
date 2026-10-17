@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Resume | AI Resume Analyzer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #1d315c 0%,
+                    #0b1220 40%,
+                    #060b14 100%
+                );
+
+            color: white;
+
+            overflow: hidden;
+        }
+
+
+        /* Background glow */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            background: #4f8cff;
+
+            filter: blur(150px);
+
+            opacity: 0.12;
+
+            top: -150px;
+            left: -100px;
+
+            pointer-events: none;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            background: #8b5cf6;
+
+            filter: blur(150px);
+
+            opacity: 0.10;
+
+            bottom: -150px;
+            right: -100px;
+
+            pointer-events: none;
+        }
+
+
+        /* Main container */
+
+        .upload-container {
+
+            width: 560px;
+
+            padding: 45px;
+
+            background:
+                rgba(21, 31, 50, 0.92);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            text-align: center;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.45);
+
+            backdrop-filter: blur(15px);
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* Logo */
+
+        .logo {
+
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f8cff,
+                    #7c5cff
+                );
+
+            box-shadow:
+                0 10px 30px rgba(79,140,255,0.25);
+        }
+
+
+        h1 {
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .subtitle {
+
+            color: #9da9bd;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =================================
+           PROFESSION SELECTION
+        ================================= */
+
+        .profession-section {
+
+            text-align: left;
+
+            margin-bottom: 25px;
+        }
+
+
+        .profession-section label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #dbe4f5;
+        }
+
+
+        .profession-section select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid rgba(255,255,255,0.10);
+
+            background: #111b2e;
+
+            color: white;
+
+            font-size: 14px;
+
+            outline: none;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .profession-section select:focus {
+
+            border-color: #4f8cff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(79,140,255,0.12);
+        }
+
+
+        .profession-section option {
+
+            background: #111b2e;
+
+            color: white;
+        }
+
+
+        /* Upload area */
+
+        .upload-box {
+
+            border:
+                2px dashed #426fb8;
+
+            background:
+                rgba(79,140,255,0.04);
+
+            padding: 38px 25px;
+
+            border-radius: 18px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+            position: relative;
+        }
+
+
+        .upload-box:hover {
+
+            border-color: #6da1ff;
+
+            background:
+                rgba(79,140,255,0.09);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,0.2);
+        }
+
+
+        .upload-icon {
+
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            background:
+                rgba(79,140,255,0.12);
+
+            border:
+                1px solid rgba(79,140,255,0.25);
+        }
+
+
+        .upload-box h2 {
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .upload-box p {
+
+            color: #8996aa;
+
+            font-size: 14px;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* Browse button */
+
+        .browse-btn {
+
+            display: inline-block;
+
+            padding: 10px 22px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(79,140,255,0.15);
+
+            border:
+                1px solid rgba(79,140,255,0.35);
+
+            color: #72a5ff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* Hide actual file input */
+
+        input[type="file"] {
+
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+
+            opacity: 0;
+
+            overflow: hidden;
+        }
+
+
+        /* File name */
+
+        #fileName {
+
+            margin-top: 18px;
+
+            color: #72a5ff;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            min-height: 20px;
+
+            word-break: break-word;
+        }
+
+
+        /* Analyze button */
+
+        .analyze-btn {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f8cff,
+                    #6d5dfc
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+            box-shadow:
+                0 10px 25px rgba(79,140,255,0.20);
+        }
+
+
+        .analyze-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(79,140,255,0.30);
+        }
+
+
+        .analyze-btn:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* Bottom information */
+
+        .info {
+
+            margin-top: 22px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            color: #69768b;
+
+            font-size: 12px;
+        }
+
+
+        .info span {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 650px) {
+
+            .upload-container {
+
+                width: 90%;
+
+                padding: 30px 22px;
+            }
+
+            h1 {
+
+                font-size: 25px;
+            }
+
+            .upload-box {
+
+                padding: 30px 15px;
+            }
+
+            .info {
+
+                flex-direction: column;
+
+                gap: 7px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="upload-container">
+
+
+        <!-- Logo -->
+
+        <div class="logo">
+            🤖
+        </div>
+
+
+        <h1>
+            Upload Your Resume
+        </h1>
+
+
+        <p class="subtitle">
+            Let AI analyze your resume and discover
+            your skills, ATS score, and career opportunities.
+        </p>
+
+
+        <!-- =================================
+             PROFESSION SELECTION
+        ================================= -->
+
+        <div class="profession-section">
+
+            <label for="profession">
+                🎯 Select your profession / target field
+            </label>
+
+            <select id="profession">
+
+                <option value="">
+                    -- Select your field --
+                </option>
+
+                <option value="software">
+                    Software / IT
+                </option>
+
+                <option value="aiml">
+                    AI & Machine Learning
+                </option>
+
+                <option value="data">
+                    Data Science / Analytics
+                </option>
+
+                <option value="business">
+                    Business / Management
+                </option>
+
+                <option value="marketing">
+                    Marketing / Sales
+                </option>
+
+                <option value="finance">
+                    Finance / Accounting
+                </option>
+
+                <option value="hr">
+                    Human Resources
+                </option>
+
+                <option value="design">
+                    UI/UX / Design
+                </option>
+
+                <option value="education">
+                    Education / Teaching
+                </option>
+
+                <option value="healthcare">
+                    Healthcare
+                </option>
+
+                <option value="law">
+                    Law
+                </option>
+
+                <option value="hospitality">
+                    Hospitality / Tourism
+                </option>
+
+                <option value="research">
+                    Research
+                </option>
+
+                <option value="other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Upload Box -->
+
+        <div
+            class="upload-box"
+            onclick="document.getElementById('resume').click()"
+        >
+
+
+            <div class="upload-icon">
+                📄
+            </div>
+
+
+            <h2>
+                Drop your resume here
+            </h2>
+
+
+            <p>
+                Upload your PDF resume to begin the analysis
+            </p>
+
+
+            <span class="browse-btn">
+                Browse File
+            </span>
+
+
+            <!-- IMPORTANT:
+                 Keep this ID unchanged -->
+
+            <input
+                type="file"
+                id="resume"
+                accept=".pdf,application/pdf"
+            >
+
+
+            <!-- IMPORTANT:
+                 Keep this ID unchanged -->
+
+            <div id="fileName">
+                No file selected
+            </div>
+
+
+        </div>
+
+
+        <!-- Analyze -->
+
+        <button
+            class="analyze-btn"
+            onclick="validateAndAnalyze()"
+        >
+            ✨ Analyze Resume
+        </button>
+
+
+        <!-- Info -->
+
+        <div class="info">
+
+            <span>
+                📄 PDF only
+            </span>
+
+            <span>
+                🔒 Secure analysis
+            </span>
+
+            <span>
+                ⚡ AI-powered
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PDF.JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+
+    <!-- PDF.JS WORKER -->
+
+    <script>
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+
+    </script>
+
+
+    <!-- OUR JAVASCRIPT -->
+
+    <script src="js/analyzer.js"></script>
+
+    <script src="js/upload.js"></script>
+
+
+    <!-- PROFESSION VALIDATION -->
+
+    <script>
+
+        function validateAndAnalyze() {
+
+            const profession =
+                document.getElementById(
+                    "profession"
+                ).value;
+
+
+            if (!profession) {
+
+                alert(
+                    "Please select your profession or target field."
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "selectedProfession",
+                profession
+            );
+
+
+            analyzeResume();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

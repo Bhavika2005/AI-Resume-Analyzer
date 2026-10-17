@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: #151f32;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .score {
+            font-size: 50px;
+            color: #4f8cff;
+        }
+
+        .item {
+            background: #202c43;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+        }
+
+
+        /* =================================
+           DASHBOARD FEATURE BUTTONS
+        ================================= */
+
+        .dashboard-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+
+        .action-btn {
+
+            position: relative;
+
+            min-height: 105px;
+
+            padding: 20px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 16px;
+
+            background: linear-gradient(
+                145deg,
+                #18243a,
+                #111b2e
+            );
+
+            color: white;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            transition: all 0.3s ease;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.18);
+        }
+
+
+        .action-btn:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #4f8cff;
+
+            background: linear-gradient(
+                145deg,
+                #1d2e4c,
+                #15233b
+            );
+
+            box-shadow:
+                0 12px 30px rgba(79,140,255,0.18);
+        }
+
+
+        .action-icon {
+
+            font-size: 25px;
+
+            display: block;
+
+            margin-bottom: 10px;
+        }
+
+
+        .action-title {
+
+            display: block;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+
+        .action-description {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #8996aa;
+
+            line-height: 1.4;
+        }
+
+
+        .action-arrow {
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 18px;
+
+            color: #6d9fff;
+
+            font-size: 18px;
+
+            transition: 0.3s;
+        }
+
+
+        .action-btn:hover .action-arrow {
+
+            transform: translateX(4px);
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .dashboard-actions {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- DASHBOARD ACTIONS -->
+
+    <div class="dashboard-actions">
+
+        <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='history.html'"
+        >
+
+            <span class="action-icon">
+                📂
+            </span>
+
+            <span class="action-title">
+                Resume History
+            </span>
+
+            <span class="action-description">
+                View your previously analyzed resumes
+            </span>
+
+            <span class="action-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='report.html'"
+        >
+
+            <span class="action-icon">
+                📊
+            </span>
+
+            <span class="action-title">
+                View Analysis Report
+            </span>
+
+            <span class="action-description">
+                See your complete resume analysis
+            </span>
+
+            <span class="action-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='jobmatch.html'"
+        >
+
+            <span class="action-icon">
+                🎯
+            </span>
+
+            <span class="action-title">
+                Match With Job Description
+            </span>
+
+            <span class="action-description">
+                Compare your skills with a job
+            </span>
+
+            <span class="action-arrow">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <div class="container">
+
+        <h1>Resume Analysis Dashboard</h1>
+
+
+        <!-- ATS SCORE -->
+
+        <div class="card">
+
+            <h2>ATS Score</h2>
+
+            <div id="atsScore" class="score">
+                0%
+            </div>
+
+            <h3>Resume Strength</h3>
+
+            <div id="strength">
+                -
+            </div>
+
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="card">
+
+            <h2>Skills Found</h2>
+
+            <div id="skillsPanel"></div>
+
+        </div>
+
+
+        <!-- SECTIONS -->
+
+        <div class="card">
+
+            <h2>Resume Sections</h2>
+
+            <div id="resumeSections"></div>
+
+        </div>
+
+
+        <!-- MISSING SKILLS -->
+
+        <div class="card">
+
+            <h2>Missing Skills</h2>
+
+            <div id="missingSkills"></div>
+
+        </div>
+
+
+        <!-- AI SUGGESTIONS -->
+
+        <div class="card">
+
+            <h2>💡 AI Suggestions</h2>
+
+            <div id="suggestions"></div>
+
+        </div>
+
+
+        <!-- JOBS -->
+
+        <div class="card">
+
+            <h2>Recommended Jobs</h2>
+
+            <div id="recommendedJobs"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =====================================
+        // GET ATS SCORE
+        // =====================================
+
+        const atsScore =
+            Number(
+                localStorage.getItem("atsScore")
+            ) || 0;
+
+
+        document.getElementById(
+            "atsScore"
+        ).innerText =
+            atsScore + "%";
+
+
+        // =====================================
+        // RESUME STRENGTH
+        // =====================================
+
+        let strength;
+
+
+        if (atsScore >= 90) {
+
+            strength = "Excellent ⭐⭐⭐⭐⭐";
+
+        }
+        else if (atsScore >= 75) {
+
+            strength = "Good ⭐⭐⭐⭐";
+
+        }
+        else if (atsScore >= 50) {
+
+            strength = "Average ⭐⭐⭐";
+
+        }
+        else {
+
+            strength = "Needs Improvement ⭐⭐";
+
+        }
+
+
+        const strengthElement =
+            document.getElementById("strength");
+
+
+        if (strengthElement) {
+
+            strengthElement.innerText =
+                strength;
+
+        }
+
+
+        // =====================================
+        // SKILLS
+        // =====================================
+
+        const skills =
+            JSON.parse(
+                localStorage.getItem("skills")
+            ) || [];
+
+
+        const skillsPanel =
+            document.getElementById(
+                "skillsPanel"
+            );
+
+
+        if (skillsPanel) {
+
+            skillsPanel.innerHTML = "";
+
+
+            if (skills.length === 0) {
+
+                skillsPanel.innerHTML =
+                    "<p>No skills detected.</p>";
+
+            }
+            else {
+
+                skills.forEach(skill => {
+
+                    skillsPanel.innerHTML += `
+
+                        <div class="item">
+                            ✅ ${skill}
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+        }
+
+
+        // =====================================
+        // RESUME SECTIONS
+        // =====================================
+
+        const sections =
+            JSON.parse(
+                localStorage.getItem("sections")
+            ) || {};
+
+
+        const sectionPanel =
+            document.getElementById(
+                "resumeSections"
+            );
+
+
+        if (sectionPanel) {
+
+            sectionPanel.innerHTML = "";
+
+
+            for (
+                const section in sections
+            ) {
+
+                sectionPanel.innerHTML += `
+
+                    <div class="item">
+
+                        ${section}
+
+                        ${
+                            sections[section]
+                            ? "✅"
+                            : "❌"
+                        }
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // =====================================
+        // MISSING SKILLS
+        // =====================================
+
+        const missingSkills =
+            JSON.parse(
+                localStorage.getItem("missingSkills")
+            ) || [];
+
+
+        const missingPanel =
+            document.getElementById(
+                "missingSkills"
+            );
+
+
+        if (missingPanel) {
+
+            missingPanel.innerHTML = "";
+
+
+            if (missingSkills.length === 0) {
+
+                missingPanel.innerHTML =
+                    "<p>No missing target skills.</p>";
+
+            }
+            else {
+
+                missingSkills.forEach(skill => {
+
+                    missingPanel.innerHTML += `
+
+                        <div class="item">
+                            ❌ ${skill}
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+        }
+
+
+        // =====================================
+        // CERTIFICATIONS
+        // =====================================
+
+        const certifications =
+            JSON.parse(
+                localStorage.getItem(
+                    "certifications"
+                )
+            ) || [];
+
+
+        const certificationPanel =
+            document.getElementById(
+                "certifications"
+            );
+
+
+        if (certificationPanel) {
+
+            certificationPanel.innerHTML = "";
+
+
+            if (certifications.length === 0) {
+
+                certificationPanel.innerHTML =
+                    "<p>No certifications detected.</p>";
+
+            }
+            else {
+
+                certifications.forEach(cert => {
+
+                    certificationPanel.innerHTML += `
+
+                        <div class="item">
+                            🏆 ${cert}
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+        }
+
+
+        // =====================================
+        // JOB MATCHES
+        // =====================================
+
+        const jobs =
+            JSON.parse(
+                localStorage.getItem(
+                    "jobMatches"
+                )
+            ) || [];
+
+
+        const jobsPanel =
+            document.getElementById(
+                "recommendedJobs"
+            );
+
+
+        if (jobsPanel) {
+
+            jobsPanel.innerHTML = "";
+
+
+            jobs.forEach(job => {
+
+                const matched =
+                    job.matchedSkills || [];
+
+
+                const missing =
+                    job.missingSkills || [];
+
+
+                jobsPanel.innerHTML += `
+
+                    <div class="item">
+
+                        <h3>
+                            💼 ${job.title}
+                        </h3>
+
+                        <strong>
+                            Match: ${job.percentage}%
+                        </strong>
+
+                        <p>
+
+                            <b>Matched Skills:</b>
+
+                            ${
+                                matched.length > 0
+                                ? matched.map(skill =>
+                                    `✓ ${skill}`
+                                ).join(", ")
+                                : "None"
+                            }
+
+                        </p>
+
+                        <p>
+
+                            <b>Missing Skills:</b>
+
+                            ${
+                                missing.length > 0
+                                ? missing.map(skill =>
+                                    `✗ ${skill}`
+                                ).join(", ")
+                                : "None"
+                            }
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        // =====================================
+        // AI SUGGESTIONS
+        // =====================================
+
+        const suggestionPanel =
+            document.getElementById(
+                "suggestions"
+            );
+
+
+        if (suggestionPanel) {
+
+            suggestionPanel.innerHTML = "";
+
+
+            let suggestions = [];
+
+
+            if (!sections.Experience) {
+
+                suggestions.push(
+                    "Add internship or work experience."
+                );
+
+            }
+
+
+            if (!sections.Projects) {
+
+                suggestions.push(
+                    "Add relevant academic or personal projects."
+                );
+
+            }
+
+
+            if (!sections.Certifications) {
+
+                suggestions.push(
+                    "Add relevant certifications."
+                );
+
+            }
+
+
+            if (missingSkills.length > 0) {
+
+                suggestions.push(
+                    "Consider adding: " +
+                    missingSkills.join(", ")
+                );
+
+            }
+
+
+            suggestions.push(
+                "Add measurable achievements where possible."
+            );
+
+
+            suggestions.forEach(
+                suggestion => {
+
+                    suggestionPanel.innerHTML += `
+
+                        <div class="item">
+                            💡 ${suggestion}
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

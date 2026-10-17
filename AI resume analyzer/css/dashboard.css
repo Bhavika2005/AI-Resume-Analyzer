@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+    display: flex;
+}
+
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar {
+    position: fixed;
+    width: 260px;
+    height: 100vh;
+    background: #111827;
+    border-right: 1px solid rgba(255, 255, 255, .08);
+    padding: 25px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.logo i {
+    color: #38bdf8;
+    font-size: 34px;
+}
+
+.logo h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar ul li:hover {
+    background: #1e293b;
+}
+
+.sidebar ul li.active {
+    background: #38bdf8;
+    color: #111827;
+    font-weight: 600;
+}
+
+.sidebar ul li i {
+    width: 25px;
+    text-align: center;
+}
+
+
+/* ==========================
+   MAIN CONTENT
+========================== */
+
+.main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    padding: 35px;
+}
+
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.navbar h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #38bdf8;
+}
+
+.profile span {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
+/* ==========================
+   DASHBOARD CARDS
+========================== */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.card {
+    background: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 25px;
+    transition: .35s;
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(56, 189, 248, .20);
+    border-color: #38bdf8;
+}
+
+.card h3 {
+    color: #94a3b8;
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.card h1 {
+    font-size: 45px;
+    color: #38bdf8;
+}
+
+.card h2 {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.card p {
+    margin-top: 10px;
+    color: #22c55e;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* ==========================
+   CONTENT AREA
+========================== */
+
+.content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.panel {
+    background: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+    color: #38bdf8;
+    font-size: 22px;
+}
+
+
+/* ==========================
+   LIST ITEMS
+========================== */
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    background: #1e293b;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.list-item:hover {
+    background: #334155;
+    transform: translateX(5px);
+}
+
+
+/* ==========================
+   TAGS
+========================== */
+
+.tag {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 6px;
+    border-radius: 30px;
+    background: #38bdf8;
+    color: white;
+    font-size: 14px;
+}
+
+.tag.red {
+    background: #ef4444;
+}
+
+.tag.green {
+    background: #22c55e;
+}
+
+.tag.orange {
+    background: #f59e0b;
+}
+
+
+/* ==========================
+   ATS PROGRESS BAR
+========================== */
+
+.progress-container {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #334155;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 82%;
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #06b6d4);
+    border-radius: 20px;
+    animation: fillProgress 2s ease;
+}
+
+@keyframes fillProgress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 82%;
+    }
+}
+
+
+/* ==========================
+   SKILL PROGRESS
+========================== */
+
+.skill {
+    margin-bottom: 20px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 10px;
+    background: #334155;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    border-radius: 20px;
+    animation: fillSkill 2s ease;
+}
+
+.python {
+    width: 95%;
+    background: #22c55e;
+}
+
+.sql {
+    width: 85%;
+    background: #3b82f6;
+}
+
+.ml {
+    width: 80%;
+    background: #a855f7;
+}
+
+.aws {
+    width: 35%;
+    background: #ef4444;
+}
+
+@keyframes fillSkill {
+    from {
+        width: 0;
+    }
+}
+
+
+/* ==========================
+   JOB MATCH BAR
+========================== */
+
+.job-card {
+    margin-bottom: 18px;
+}
+
+.job-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.job-progress {
+    width: 100%;
+    height: 10px;
+    background: #334155;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.job-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    border-radius: 20px;
+}
+
+.ai {
+    width: 92%;
+}
+
+.mleng {
+    width: 88%;
+}
+
+.data {
+    width: 75%;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1200px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:768px) {
+    .sidebar {
+        width: 80px;
+        padding: 15px;
+    }
+    .sidebar h2 {
+        display: none;
+    }
+    .sidebar ul li {
+        justify-content: center;
+    }
+    .sidebar ul li i {
+        margin: 0;
+    }
+    .main {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 20px;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th {
+    background: #38bdf8;
+    padding: 18px;
+    color: white;
+}
+
+td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+}
+
+tr:hover {
+    background: #273449;
+}
+.clear-history-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #d9534f;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.clear-history-btn:hover {
+    background: #c9302c;
+}
+/* =================================
+   PROFESSION SELECTION
+================================= */
+
+.profession-section {
+
+    text-align: left;
+
+    margin-bottom: 25px;
+}
+
+.profession-section label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #dbe4f5;
+}
+
+.profession-section select {
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    background: #111b2e;
+
+    color: white;
+
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.profession-section select:focus {
+
+    border-color: #4f8cff;
+
+    box-shadow:
+        0 0 0 3px rgba(79,140,255,0.12);
+}
+
+.profession-section option {
+
+    background: #111b2e;
+
+    color: white;
+}

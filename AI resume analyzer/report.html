@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis Report</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #151f32;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 50px;
+            color: #4f8cff;
+            font-weight: bold;
+        }
+
+        .item {
+            background: #202c43;
+            padding: 10px;
+            margin: 7px 0;
+            border-radius: 6px;
+        }
+
+        .buttons {
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 7px;
+            background: #4f8cff;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .card {
+                background: white;
+                border: 1px solid #ccc;
+            }
+
+            .item {
+                background: #f2f2f2;
+            }
+
+            .buttons {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="buttons">
+
+        <button onclick="window.location.href='dashboard.html'">
+            ← Dashboard
+        </button>
+
+        <button onclick="window.print()">
+            📄 Download / Print Report
+        </button>
+
+    </div>
+
+
+    <div class="header">
+
+        <h1>AI Resume Analysis Report</h1>
+
+        <p id="resumeName"></p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📊 ATS Score</h2>
+
+        <div
+            id="reportATS"
+            class="score">
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🧠 Detected Skills</h2>
+
+        <div id="reportSkills"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📑 Resume Sections</h2>
+
+        <div id="reportSections"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🏆 Certifications</h2>
+
+        <div id="reportCertifications"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>⚠️ Missing Skills</h2>
+
+        <div id="reportMissingSkills"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>💼 Job Matches</h2>
+
+        <div id="reportJobs"></div>
+
+    </div>
+
+</div>
+
+
+<script src="js/report.js"></script>
+
+</body>
+
+</html>

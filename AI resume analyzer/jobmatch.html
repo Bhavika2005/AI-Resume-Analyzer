@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Job Description Matcher</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: #151f32;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            box-sizing: border-box;
+
+            background: #202c43;
+            color: white;
+
+            border: 1px solid #3b4b68;
+            border-radius: 8px;
+
+            padding: 15px;
+            font-size: 15px;
+
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 22px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #4f8cff;
+            color: white;
+
+            cursor: pointer;
+
+            margin-top: 15px;
+        }
+
+        .score {
+            font-size: 45px;
+            color: #4f8cff;
+            font-weight: bold;
+        }
+
+        .item {
+            background: #202c43;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+        }
+
+        .matched {
+            border-left: 4px solid #70d890;
+        }
+
+        .missing {
+            border-left: 4px solid #ff7777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🎯 Job Description Matcher</h1>
+
+        <p>
+            Paste a job description below to compare it
+            with your resume.
+        </p>
+
+        <textarea
+            id="jobDescription"
+            placeholder="Paste the job description here...">
+        </textarea>
+
+        <br>
+
+        <button onclick="matchJob()">
+            🔍 Match Resume
+        </button>
+
+    </div>
+
+
+    <div
+        id="result"
+        style="display:none;"
+    >
+
+        <div class="card">
+
+            <h2>Job Match Score</h2>
+
+            <div
+                id="matchScore"
+                class="score">
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>✅ Matching Skills</h2>
+
+            <div id="matchedSkills"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>❌ Missing Skills</h2>
+
+            <div id="missingSkills"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="js/jobMatcher.js"></script>
+
+</body>
+
+</html>

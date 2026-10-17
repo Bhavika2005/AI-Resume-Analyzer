@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume History</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .history-card {
+
+            background: #151f32;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.3);
+
+        }
+
+        .history-card h2 {
+            margin-top: 0;
+        }
+
+        .score {
+
+            font-size: 30px;
+
+            color: #4f8cff;
+
+            margin: 10px 0;
+
+        }
+
+        .date {
+            color: #aeb8c9;
+        }
+
+        .skills {
+            margin-top: 15px;
+            color: #d5dbea;
+        }
+
+        .empty {
+
+            text-align: center;
+
+            color: #aeb8c9;
+
+            padding: 50px;
+
+        }
+
+        button {
+
+            padding: 10px 20px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #4f8cff;
+
+            color: white;
+
+            cursor: pointer;
+
+            margin-top: 15px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+<button onclick="clearResumeHistory()" class="clear-history-btn">
+    🗑️ Clear Resume History
+</button>
+<div class="container">
+
+    <h1>📋 Resume History</h1>
+    <button onclick="window.location.href='compare.html'">
+    📊 Compare Latest Resumes
+</button>
+
+    <div id="historyContainer"></div>
+
+</div>
+
+
+<script src="js/history.js"></script>
+
+</body>
+
+</html>

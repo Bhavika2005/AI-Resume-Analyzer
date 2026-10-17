@@ -1,0 +1,25 @@
+async function extractPDFText(file) {
+
+    const arrayBuffer = await file.arrayBuffer();
+
+    const pdf = await pdfjsLib.getDocument({
+        data: arrayBuffer
+    }).promise;
+
+    let text = "";
+
+    for (let page = 1; page <= pdf.numPages; page++) {
+
+        const currentPage = await pdf.getPage(page);
+
+        const content = await currentPage.getTextContent();
+
+        const pageText = content.items
+            .map(item => item.str)
+            .join(" ");
+
+        text += pageText + " ";
+    }
+
+    return text;
+}
