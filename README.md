@@ -259,3 +259,40 @@ The web application provides a consistent interface for uploading resumes and ex
 
 The application contains the following main pages:
 
+#### 1. Upload Resume: Upload a PDF and select the target profession.
+ ![Upload_page](Upload_page.png)
+
+
+
+#### 2. Resume Analysis Dashboard: View scores, skills, resume sections, missing skills, suggestions, and job recommendations.
+ ![Dashboard1](Dashboard1.png)
+
+ ![Dashboard2](Dashboard2.png)
+
+ ![Dashboard3](Dashboard3.png)
+   
+![Dashboard4](Dashboard4.png)
+
+
+#### 3. Resume History: Review previous analyses and clear stored history.
+![ResumeHistory](ResultHistory.png)
+
+
+
+#### 4. 
+
+
+
+#### 5. Analysis Report: View and print a consolidated resume analysis.
+  ![AnalysisReport1](AnalysisReport1.png)
+
+  ![AnalysisReport2](AnalysisReport2.png)
+
+  ![AnalysisReport3](AnalysisReport3.png)
+
+
+
+  #### 6.Job Description Matcher: Compare resume skills with a pasted job description.
+   ![JobMatcher1](JobMatcher1.png)
+
+   ![JobMatcher2](JobMatcher2.png)
